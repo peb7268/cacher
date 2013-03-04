@@ -1,6 +1,10 @@
-<?php 
+<?php $base = new Base;
+echo "\$base ".$base instanceof Base."\n";
+
 class Cache 
 {
+	private $data;
+
 	public function __construct($config)
 	{
 		ini_set('auto_detect_line_endings',TRUE);
@@ -13,13 +17,14 @@ class Cache
 	public function init($message, $mode)
 	{
 		if(isset($_POST['cache'])){
-			$this->_e($message);
+			Base::_e($message, $this);
 		}
 		$ds 	= $this->openDataSource('csv', $this->source);
 		$data 	= $this->readDataSource('csv', $ds);
 
-		$this->_e($data);
-		return $data;
+		Base::_e($data, $this);
+		$this->data = $data;
+		return $this;
 	}
 	public function openDataSource($type, $dataSource)
 	{
@@ -42,6 +47,7 @@ class Cache
 			break;
 			
 			case 'Web Service':
+
 				return 'Web Service';
 			break;
 
@@ -52,22 +58,13 @@ class Cache
 		}
 		return $array;	
 	}
+	public function getData()
+	{
+		return $this->data;
+	}
 	public function validateDataSourceFormat($dataSource)
 	{
 		//detect how many levels deep the array goes.
 		return true;
-	}
-	public function _e($message)
-	{	
-		if($this->mode == 'dev'){
-			if(gettype($message) == 'string')
-			{
-				echo $message.'<br>';
-			} else {
-				echo '<pre>';
-					print_r($message);
-				echo '</pre>';
-			}
-		}
 	}
 }

@@ -21,6 +21,5 @@
 
 <?php require('lib/config.php'); require('lib/functions.php');  require('classes/Cache.php');
 $cache = new Cache($config);
-$data = $cache->init($cache->message, $cache->mode);
-
+$data = $cache->init($cache->message, $cache->mode)->getData();
 ?>

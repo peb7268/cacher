@@ -1,4 +1,4 @@
-<?php require('./src/classes/Cache.php');
+<?php require __DIR__ . '/../src/lib/autoloader.php';
 //Hookup PSR Autoloading
 
 class CacheTest extends PHPUnit_Framework_TestCase {
