@@ -19,7 +19,7 @@
 </body>
 </html>
 
-<?php require('lib/config.php'); require('lib/functions.php');  require('classes/Cache.php');
-$cache = new Cache($config);
-$data = $cache->init($cache->message, $cache->mode)->getData();
-?>
+<?php require('lib/config.php');
+$cache 	= new Cache($config, $mode = 'dev');
+$data 	= $cache->init($cache->message, $cache->mode)->getData();
+$db 	= new Db($config->db);

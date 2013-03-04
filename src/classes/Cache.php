@@ -1,17 +1,15 @@
-<?php $base = new Base;
-echo "\$base ".$base instanceof Base."\n";
-
+<?php 
 class Cache 
 {
 	private $data;
 
-	public function __construct($config)
+	public function __construct($config, $mode = null)
 	{
 		ini_set('auto_detect_line_endings',TRUE);
-		$this->db 			= $config->db;
+		$this->db_name 		= $config->db_name;
 		$this->source_type 	= $config->source_type;
 		$this->source		= $config->source;
-		$this->mode			= $config->mode;
+		$this->mode			= ($mode) ? $mode : $config->mode;
 		$this->message 		= $config->message;
 	}
 	public function init($message, $mode)

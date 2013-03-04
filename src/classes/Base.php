@@ -14,6 +14,3 @@ class Base {
 		}
 	}
 }
-
-$cache = new Cache(new StdClass());
-echo "<h1>". $cache instanceof Cache."</h1>";

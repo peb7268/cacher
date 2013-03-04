@@ -1,6 +1,24 @@
-<?php function my_autoloader($class)
+<?php 
+//echo "autoloader found \n\n";
+function autoloadSrc($class)
 {
-	require __DIR__.'/../classes/'.$class.'.php';
-}
-spl_autoload_register('my_autoloader');
+	//echo "a src was autoloaded \n";
+	$filename = dirname(dirname(__file__)).'/classes/'.$class.'.php';
+	if(is_readable($filename)){
+		require $filename;	
+	} else {
+		//echo $filename." was not readable. Check your path. \n\n";
+	}
+	
 
+}
+function autoloadTests($class)
+{
+	//echo "a test was autoloaded \n";
+	$filename = dirname(dirname(__file__)).'/classes/'.$class.'.php';
+	if(is_readable($filename)){
+		require $filename;	
+	} else {
+		//echo $filename." was not readable. Check your path. \n\n";
+	}
+}
